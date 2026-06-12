@@ -97,15 +97,6 @@ An expert in information sharing and threat intelligence within the financial se
 
 ---
 
-## 🚀 Hackathon Notes
-
-This project was built for a hackathon and intentionally demonstrates several advanced integration patterns:
-
-- **Multi-tenant agent orchestration** — Copilot Studio and Azure AI Foundry deployed in separate tenants, bridged securely.
-- **Service Principal–secured A2A** — non-interactive, scoped, auditable agent-to-agent trust.
-- **Foundry-hosted specialist agents** — each DORA pillar isolated as its own connection.
-- **End-to-end SharePoint automation** — WorkIQ handling read/write document operations.
-
 See the **demo video on the project site** for the full live walkthrough.
 
 ---
