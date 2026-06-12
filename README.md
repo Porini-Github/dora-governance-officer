@@ -1,5 +1,7 @@
 # DORA Multiagent Compliance Officer
 
+![DORA](image/logo.png)
+
 **Microsoft Agents League Hackathon 2026 | Enterprise Agents Track**
 
 ![Copilot Studio](https://img.shields.io/badge/Built%20with-Copilot%20Studio-0078D4?style=flat-round&logo=microsoftcopilot&logoColor=white)
