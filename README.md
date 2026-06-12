@@ -45,6 +45,8 @@ A walkthrough video is available on the project site. Refer to it for a full end
 
 - **WorkIQ for SharePoint operations.** **WorkIQ** is used to perform all document operations on **SharePoint** — reading source documents, contracts, and policies for analysis, and writing back the generated compliance assessments.
 
+![a2a](image/copilot-studio-a2a-agents.png)
+
 ---
 
 ## 🤖 The Agents
@@ -86,7 +88,7 @@ An expert in information sharing and threat intelligence within the financial se
 | Layer | Technology |
 |-------|------------|
 | Orchestrator | Microsoft Copilot Studio  |
-| Subagents (5 pillars) | Azure AI Foundry connections |
+| Subagents (5 pillars) | Azure AI Foundry |
 | Inter-agent communication | A2A protocol |
 | Document operations | WorkIQ - SharePoint |
 | Regulatory scope | DORA — Regulation (EU) 2022/2554 |
