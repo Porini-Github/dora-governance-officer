@@ -15,28 +15,8 @@ A walkthrough video is available on the project site. Refer to it for a full end
 ## 🏛️ Architecture Overview
 
 ```
-                          ┌──────────────────────────────────┐
-                          │      PRESIDENT / ORCHESTRATOR      │
-                          │        (Copilot Studio)            │
-                          │   — Tenant A —                     │
-                          └──────────────┬───────────────────┘
-                                         │  A2A (Service Principal auth)
-            ┌──────────────┬─────────────┼─────────────┬──────────────┐
-            ▼              ▼             ▼             ▼              ▼
-    ┌──────────────┐┌──────────────┐┌──────────┐┌──────────────┐┌──────────────┐
-    │ ICT Risk     ││ Incident     ││ Resilience││ Third Party  ││ Threat Intel │
-    │ Officer      ││ Commander    ││ Tester    ││ Guardian     ││ Officer      │
-    │ Pillar 1     ││ Pillar 2     ││ Pillar 3  ││ Pillar 4     ││ Pillar 5     │
-    └──────────────┘└──────────────┘└──────────┘└──────────────┘└──────────────┘
-                          (Azure AI Foundry connections — Tenant B)
+<img width="3360" height="1900" alt="dora_architecture" src="https://github.com/user-attachments/assets/26344fc4-3868-41c3-9e92-54f5dad09076" />
 
-                                   │
-                                   ▼
-                          ┌────────────────────┐
-                          │      WorkIQ         │
-                          │ SharePoint document │
-                          │   operations        │
-                          └────────────────────┘
 ```
 
 ### Key architectural elements
