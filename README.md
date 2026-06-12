@@ -1,8 +1,8 @@
 # DORA Multiagent Compliance Analyzer
 
-![A2A Protocol](https://img.shields.io/badge/A2A-Protocol-0A66C2?style=for-the-badge)
-![Azure AI Foundry](https://img.shields.io/badge/Azure%20AI-Foundry-0078D4?style=for-the-badge&logo=microsoftazure)
-![DORA Compliance](https://img.shields.io/badge/DORA-Compliance%20Analyzer-1F6FEB?style=for-the-badge)
+![A2A Service Principal](https://img.shields.io/badge/A2A-Service%20Principal-0078D4?style=for-the-badge&logo=microsoftentra&logoColor=white)
+![Azure AI Foundry](https://img.shields.io/badge/Azure%20AI-Foundry-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)
+![SharePoint WorkIQ](https://img.shields.io/badge/SharePoint-WorkIQ-107C41?style=for-the-badge&logo=microsoftsharepoint&logoColor=white)
 
 > A multiagent system that analyzes financial-sector documents, contracts, and policies against the five pillars of **DORA — the Digital Operational Resilience Act (Regulation (EU) 2022/2554)**.
 
