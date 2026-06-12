@@ -1,4 +1,4 @@
-# DORA Multiagent Compliance Analyzer
+# DORA Multiagent Compliance Officer
 
 **Microsoft Agents League Hackathon 2026 | Enterprise Agents Track**
 
