@@ -18,8 +18,7 @@ A walkthrough video is available on the project site. Refer to it for a full end
 
 ## 🏛️ Architecture Overview
 
-```
-(image/dora_architecture.png)
+![DORA Architecture](image/dora_architecture.png)
 
 ```
 
