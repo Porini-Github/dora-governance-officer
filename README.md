@@ -1,8 +1,11 @@
 # DORA Multiagent Compliance Analyzer
 
-![A2A Service Principal](https://img.shields.io/badge/A2A-Service%20Principal-0078D4?style=for-the-badge&logo=microsoftentra&logoColor=white)
-![Azure AI Foundry](https://img.shields.io/badge/Azure%20AI-Foundry-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)
-![SharePoint WorkIQ](https://img.shields.io/badge/SharePoint-WorkIQ-107C41?style=for-the-badge&logo=microsoftsharepoint&logoColor=white)
+**Microsoft Agents League Hackathon 2026 | Enterprise Agents Track**
+
+![Copilot Studio](https://img.shields.io/badge/Built%20with-Copilot%20Studio-0078D4?style=flat-round&logo=microsoftcopilot&logoColor=white)
+![Protocol A2A](https://img.shields.io/badge/Protocol-A2A-0078D4?style=flat-round&logo=microsoftentra&logoColor=white)
+![Azure AI Foundry](https://img.shields.io/badge/Azure%20AI-Foundry-0078D4?style=flat-round&logo=microsoftazure&logoColor=white)
+![SharePoint WorkIQ](https://img.shields.io/badge/SharePoint-WorkIQ-0078D4?style=flat-round&logo=microsoftsharepoint&logoColor=white)
 
 > A multiagent system that analyzes financial-sector documents, contracts, and policies against the five pillars of **DORA — the Digital Operational Resilience Act (Regulation (EU) 2022/2554)**.
 
@@ -20,7 +23,6 @@ A walkthrough video is available on the project site. Refer to it for a full end
 
 ![DORA Architecture](image/dora_architecture.png)
 
-```
 
 ### Key architectural elements
 
@@ -72,10 +74,10 @@ An expert in information sharing and threat intelligence within the financial se
 
 | Layer | Technology |
 |-------|------------|
-| Orchestrator | Microsoft Copilot Studio (Tenant A) |
-| Subagents (5 pillars) | Azure AI Foundry connections (Tenant B) |
-| Inter-agent communication | A2A protocol with Service Principal authentication |
-| Document operations | WorkIQ on SharePoint |
+| Orchestrator | Microsoft Copilot Studio  |
+| Subagents (5 pillars) | Azure AI Foundry connections |
+| Inter-agent communication | A2A protocol |
+| Document operations | WorkIQ - SharePoint |
 | Regulatory scope | DORA — Regulation (EU) 2022/2554 |
 
 ---
@@ -86,4 +88,4 @@ See the **demo video on the project site** for the full live walkthrough.
 
 ## ⚠️ Disclaimer
 
-This tool provides automated analysis to support DORA compliance review. It is a decision-support aid, not legal advice. All findings should be validated by qualified compliance and legal professionals before action.
+>This tool provides automated analysis to support DORA compliance review. It is a decision-support aid, not legal advice. All findings should be validated by qualified compliance and legal professionals before action.
