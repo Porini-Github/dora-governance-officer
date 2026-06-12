@@ -24,7 +24,9 @@ The DORA Multiagent Compliance Analyzer automates this process by leveraging spe
 
 ## 📺 Demo Video
 
-A walkthrough video is available on the project site. Refer to it for a full end-to-end demonstration of the orchestration flow, the agent-to-agent (A2A) handoffs, and the SharePoint operations in action. https://youtu.be/Iam4RJv3iIc
+A walkthrough video is available on the project site. Refer to it for a full end-to-end demonstration of the orchestration flow, the agent-to-agent (A2A) handoffs, and the SharePoint operations in action. 
+
+> **[▶ Watch Demo](https://youtu.be/Iam4RJv3iIc)**
 
 ---
 
