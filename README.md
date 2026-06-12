@@ -1,194 +1,115 @@
-# dora-governance-officer
-Here's a README draft suitable for a hackathon project submission:
+# DORA Multiagent Compliance Analyzer
 
-# DORA Multi-Agent Compliance Analyzer
+> A multiagent system that analyzes financial-sector documents, contracts, and policies against the five pillars of **DORA — the Digital Operational Resilience Act (Regulation (EU) 2022/2554)**.
 
-## Overview
-
-The DORA Multi-Agent Compliance Analyzer is an AI-powered solution designed to assess organizational documentation against the requirements of the European Digital Operational Resilience Act (DORA) (Regulation (EU) 2022/2554).
-
-The platform leverages a multi-agent architecture where specialized AI agents independently analyze documents from the perspective of specific DORA regulatory pillars. A central orchestrator, acting as the "President" agent, consolidates and evaluates the findings to produce a comprehensive compliance assessment.
-
-A demonstration video is available on this site and provides a walkthrough of the solution architecture, workflow, and user experience.
+A **President/Orchestrator** agent coordinates five specialized subagents, each an expert in one DORA pillar. Every subagent independently reviews the input material from its own regulatory lens; the orchestrator then consolidates their findings into a single, cross-pillar compliance assessment.
 
 ---
 
-## Architecture
+## 📺 Demo Video
 
-### Orchestrator (President Agent)
-
-The President Agent is implemented in Microsoft Copilot Studio and acts as the central coordinator of the system.
-
-Responsibilities:
-
-* Receives user requests and documents for analysis.
-* Delegates analysis tasks to specialized DORA agents.
-* Collects and evaluates agent outputs.
-* Identifies overlaps, gaps, and conflicting assessments.
-* Produces a consolidated compliance report with actionable recommendations.
+A walkthrough video is available on the project site. Refer to it for a full end-to-end demonstration of the orchestration flow, the agent-to-agent (A2A) handoffs, and the SharePoint operations in action.
 
 ---
 
-## Specialized DORA Agents
+## 🏛️ Architecture Overview
 
-Each specialist agent focuses exclusively on a single DORA pillar and performs an independent analysis.
+```
+                          ┌──────────────────────────────────┐
+                          │      PRESIDENT / ORCHESTRATOR      │
+                          │        (Copilot Studio)            │
+                          │   — Tenant A —                     │
+                          └──────────────┬───────────────────┘
+                                         │  A2A (Service Principal auth)
+            ┌──────────────┬─────────────┼─────────────┬──────────────┐
+            ▼              ▼             ▼             ▼              ▼
+    ┌──────────────┐┌──────────────┐┌──────────┐┌──────────────┐┌──────────────┐
+    │ ICT Risk     ││ Incident     ││ Resilience││ Third Party  ││ Threat Intel │
+    │ Officer      ││ Commander    ││ Tester    ││ Guardian     ││ Officer      │
+    │ Pillar 1     ││ Pillar 2     ││ Pillar 3  ││ Pillar 4     ││ Pillar 5     │
+    └──────────────┘└──────────────┘└──────────┘└──────────────┘└──────────────┘
+                          (Azure AI Foundry connections — Tenant B)
 
-### ICT Risk Officer
+                                   │
+                                   ▼
+                          ┌────────────────────┐
+                          │      WorkIQ         │
+                          │ SharePoint document │
+                          │   operations        │
+                          └────────────────────┘
+```
 
-**Pillar 1: ICT Risk Management (Articles 5–16)**
+### Key architectural elements
 
-Analyzes:
+- **Agent-to-Agent (A2A) communication with a Service Principal.** The orchestrator communicates with each subagent over the A2A protocol. Authentication and authorization between agents are handled by an Azure AD **Service Principal**, providing a secure, non-interactive, credential-scoped trust boundary for every agent call.
 
-* ICT governance frameworks
-* Risk management policies
-* Security controls
-* Operational resilience procedures
-* ICT risk assessment processes
+- **Subagents as Azure AI Foundry connections.** All five pillar agents are deployed and exposed through **Azure AI Foundry**. Each is registered as a Foundry connection that the orchestrator invokes, keeping model hosting, grounding, and tooling centralized in Foundry.
 
----
+- **Orchestrator on Copilot Studio.** The President/Orchestrator runs in **Microsoft Copilot Studio**. It owns the conversation with the user, dispatches work to the subagents, and synthesizes the consolidated DORA report.
 
-### Incident Commander
+- **Cross-tenant topology.** The orchestrator (Copilot Studio) and the subagents (Azure AI Foundry) live in **two different tenants**. The Service Principal–backed A2A connection is what bridges the tenant boundary securely, demonstrating a realistic multi-tenant enterprise integration pattern.
 
-**Pillar 2: ICT-Related Incident Management, Classification and Reporting (Articles 17–23)**
-
-Analyzes:
-
-* Incident response procedures
-* Escalation workflows
-* Reporting mechanisms
-* Incident classification frameworks
-* Regulatory notification processes
-
----
-
-### Resilience Tester
-
-**Pillar 3: Digital Operational Resilience Testing (Articles 24–27)**
-
-Analyzes:
-
-* Resilience testing programs
-* Vulnerability assessments
-* Penetration testing procedures
-* Threat-led penetration testing readiness
-* Testing governance and reporting
+- **WorkIQ for SharePoint operations.** **WorkIQ** is used to perform all document operations on **SharePoint** — reading source documents, contracts, and policies for analysis, and writing back the generated compliance assessments.
 
 ---
 
-### Third Party Guardian
+## 🤖 The Agents
 
-**Pillar 4: ICT Third-Party Risk Management (Articles 28–44)**
+### President / Orchestrator
+Coordinates the analysis. Receives the documents under review, fans the work out to the five pillar specialists via A2A, collects each pillar's findings, and produces a unified, prioritized, cross-pillar DORA compliance assessment.
 
-Analyzes:
+### 1. ICT Risk Officer — *Pillar 1*
+Specialized in DORA (Regulation (EU) 2022/2554), with expertise in **Pillar 1: ICT Risk Management (Articles 5–16)**. Evaluates the ICT risk management framework, governance, protection and prevention measures, detection, response, recovery, and learning processes.
 
-* Supplier contracts
-* Outsourcing arrangements
-* Vendor governance policies
-* Third-party risk assessments
-* Monitoring and exit strategies
+### 2. Incident Commander — *Pillar 2*
+Specialized in DORA, with expertise in **Pillar 2: ICT-Related Incident Management, Classification and Reporting (Articles 17–23)**. Assesses incident handling processes, classification criteria, and major-incident reporting obligations.
 
----
+### 3. Resilience Tester — *Pillar 3*
+Specialized in **DORA Pillar 3: Digital Operational Resilience Testing (Articles 24–27)**. Reviews the digital operational resilience testing programme, including threat-led penetration testing (TLPT) requirements.
 
-### Threat Intelligence Officer
+### 4. Third Party Guardian — *Pillar 4*
+Specialized in DORA, with expertise in **Pillar 4: Managing of ICT Third-Party Risk (Articles 28–44)**. Analyzes contractual arrangements with ICT third-party providers, concentration risk, subcontracting, and oversight of critical third-party providers.
 
-**Pillar 5: Information Sharing (Article 45)**
-
-Analyzes:
-
-* Threat intelligence programs
-* Information-sharing agreements
-* Cyber threat collaboration processes
-* Industry cooperation frameworks
-* Intelligence governance policies
+### 5. Threat Intelligence Officer — *Pillar 5*
+An expert in information sharing and threat intelligence within the financial sector. Analyzes documents, contracts, and policies from the perspective of **DORA Pillar 5: Information Sharing (Article 45)**.
 
 ---
 
-## Agent-to-Agent (A2A) Communication
+## ⚙️ How It Works
 
-The solution follows an Agent-to-Agent (A2A) service architecture.
-
-Key principles:
-
-* Each specialist agent operates as an independent service.
-* Agents communicate through defined service endpoints.
-* Analysis tasks are distributed asynchronously.
-* Outputs are standardized for orchestration and aggregation.
-* Agents remain loosely coupled, enabling scalability and independent evolution.
-
-This architecture allows additional regulatory or domain-specific agents to be added with minimal impact on the overall system.
+1. **Ingestion** — Source documents, contracts, and policies are pulled from **SharePoint** via **WorkIQ**.
+2. **Dispatch** — The **Copilot Studio** orchestrator routes the material to all five **Foundry**-hosted subagents over **A2A**, authenticated via the **Service Principal** (crossing the tenant boundary between Copilot Studio and Foundry).
+3. **Independent analysis** — Each pillar agent reviews the material against its assigned DORA articles and returns structured findings (gaps, risks, compliant areas, recommendations).
+4. **Consolidation** — The orchestrator merges the five perspectives, deduplicates cross-pillar overlaps, and prioritizes findings.
+5. **Output** — The final consolidated DORA compliance assessment is written back to **SharePoint** through **WorkIQ**.
 
 ---
 
-## Azure AI Foundry Integration
+## 🧱 Tech Stack
 
-All specialist DORA agents are deployed as Azure AI Foundry agents.
-
-Benefits:
-
-* Centralized agent management
-* Secure execution environment
-* Consistent prompt governance
-* Reusable agent definitions
-* Enterprise-grade scalability
-
-The President Agent interacts with these Foundry agents through Foundry connections configured within the orchestration layer.
+| Layer | Technology |
+|-------|------------|
+| Orchestrator | Microsoft Copilot Studio (Tenant A) |
+| Subagents (5 pillars) | Azure AI Foundry connections (Tenant B) |
+| Inter-agent communication | A2A protocol with Service Principal authentication |
+| Document operations | WorkIQ on SharePoint |
+| Regulatory scope | DORA — Regulation (EU) 2022/2554 |
 
 ---
 
-## Cross-Tenant Architecture
+## 🚀 Hackathon Notes
 
-A key challenge addressed during the hackathon was enabling collaboration across separate Microsoft environments.
+This project was built for a hackathon and intentionally demonstrates several advanced integration patterns:
 
-### Tenant 1
+- **Multi-tenant agent orchestration** — Copilot Studio and Azure AI Foundry deployed in separate tenants, bridged securely.
+- **Service Principal–secured A2A** — non-interactive, scoped, auditable agent-to-agent trust.
+- **Foundry-hosted specialist agents** — each DORA pillar isolated as its own connection.
+- **End-to-end SharePoint automation** — WorkIQ handling read/write document operations.
 
-* Azure AI Foundry
-* Specialized DORA agents
-
-### Tenant 2
-
-* Microsoft Copilot Studio
-* President/Orchestrator agent
-* User-facing experience
-
-This cross-tenant architecture demonstrates how enterprise AI solutions can integrate specialized AI capabilities while maintaining organizational separation and governance boundaries.
+See the **demo video on the project site** for the full live walkthrough.
 
 ---
 
-## WorkIQ Integration
+## ⚠️ Disclaimer
 
-WorkIQ is used to perform operational activities on SharePoint content.
-
-Capabilities include:
-
-* Accessing compliance documentation
-* Retrieving policies and procedures
-* Processing contracts and supporting evidence
-* Managing document workflows
-* Providing content to specialist agents for analysis
-
-This enables the platform to analyze information directly from enterprise knowledge repositories without requiring manual document extraction.
-
----
-
-## Analysis Workflow
-
-1. User submits one or more documents.
-2. Copilot Studio orchestrator receives the request.
-3. Documents are retrieved from SharePoint through WorkIQ operations.
-4. The orchestrator invokes all five Foundry specialist agents.
-5. Each agent evaluates the content against its assigned DORA pillar.
-6. Findings are returned to the President Agent.
-7. The President Agent reviews and synthesizes all assessments.
-8. A consolidated DORA compliance report is generated.
-
----
-
-## Key Benefits
-
-* Comprehensive DORA coverage across all five pillars.
-* Parallel analysis by specialized regulatory experts.
-* Cross-tenant enterprise architecture.
-* Agent-to-Agent service-based communication.
-* Automated SharePoint document processing through WorkIQ.
-* Scalable and extensible multi-agent framework.
-* Rapid compliance assessment and gap identification.
+This tool provides automated analysis to support DORA compliance review. It is a decision-support aid, not legal advice. All findings should be validated by qualified compliance and legal professionals before action.
