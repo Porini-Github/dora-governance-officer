@@ -19,8 +19,7 @@ A walkthrough video is available on the project site. Refer to it for a full end
 ## 🏛️ Architecture Overview
 
 ```
-<img width="3360" height="1900" alt="dora_architecture" src="https://github.com/user-attachments/assets/4d6ccf5d-9306-4f1e-8063-b1bc384a3abf" />
-
+(image/dora_architecture.png)
 
 ```
 
