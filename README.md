@@ -1,5 +1,9 @@
 # DORA Multiagent Compliance Analyzer
 
+![A2A Protocol](https://img.shields.io/badge/A2A-Protocol-0A66C2?style=for-the-badge)
+![Azure AI Foundry](https://img.shields.io/badge/Azure%20AI-Foundry-0078D4?style=for-the-badge&logo=microsoftazure)
+![DORA Compliance](https://img.shields.io/badge/DORA-Compliance%20Analyzer-1F6FEB?style=for-the-badge)
+
 > A multiagent system that analyzes financial-sector documents, contracts, and policies against the five pillars of **DORA — the Digital Operational Resilience Act (Regulation (EU) 2022/2554)**.
 
 A **President/Orchestrator** agent coordinates five specialized subagents, each an expert in one DORA pillar. Every subagent independently reviews the input material from its own regulatory lens; the orchestrator then consolidates their findings into a single, cross-pillar compliance assessment.
@@ -15,7 +19,8 @@ A walkthrough video is available on the project site. Refer to it for a full end
 ## 🏛️ Architecture Overview
 
 ```
-<img width="3360" height="1900" alt="dora_architecture" src="https://github.com/user-attachments/assets/26344fc4-3868-41c3-9e92-54f5dad09076" />
+<img width="3360" height="1900" alt="dora_architecture" src="https://github.com/user-attachments/assets/4d6ccf5d-9306-4f1e-8063-b1bc384a3abf" />
+
 
 ```
 
