@@ -52,6 +52,8 @@ A walkthrough video is available on the project site. Refer to it for a full end
 ### President / Orchestrator
 Coordinates the analysis. Receives the documents under review, fans the work out to the five pillar specialists via A2A, collects each pillar's findings, and produces a unified, prioritized, cross-pillar DORA compliance assessment.
 
+![Foundry Agents](image/foundry-agents.png)
+
 ### 1. ICT Risk Officer — *Pillar 1*
 Specialized in DORA (Regulation (EU) 2022/2554), with expertise in **Pillar 1: ICT Risk Management (Articles 5–16)**. Evaluates the ICT risk management framework, governance, protection and prevention measures, detection, response, recovery, and learning processes.
 
