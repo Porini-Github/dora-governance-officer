@@ -12,6 +12,13 @@
 A **President/Orchestrator** agent coordinates five specialized subagents, each an expert in one DORA pillar. Every subagent independently reviews the input material from its own regulatory lens; the orchestrator then consolidates their findings into a single, cross-pillar compliance assessment.
 
 ---
+## 🚀 Business Scope
+
+Financial institutions must demonstrate compliance with the five pillars of DORA while managing large volumes of policies, contracts, and operational documentation. Manual reviews are time-consuming, fragmented, and difficult to scale.
+
+The DORA Multiagent Compliance Analyzer automates this process by leveraging specialized AI agents to assess documents against each DORA pillar, identify compliance gaps and risks, and deliver a consolidated resilience assessment that supports faster, more consistent regulatory reviews
+
+---
 
 ## 📺 Demo Video
 
